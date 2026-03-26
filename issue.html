@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Issue History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <h2>Issue History</h2>
+    <button onclick="window.location.href='index.html'" class="back-btn">DASHBOARD</button>
+</header>
+
+<!--DASHBOARD-->
+<div class="dashboard-cards">
+    <div class="card-1">
+        <h4>Total Issues</h4>
+        <i data-lucide="rotate-ccw"></i>
+        <p id="totalIssues">0</p>
+        <span>All time transactions</span>
+    </div>
+
+    <div class="card-2">
+        <h4>Products Issued</h4>
+         <i data-lucide="box"></i>
+        <p id="productsIssued">0</p>
+        <span>Total units issued</span>
+    </div>
+
+    <div class="card-3">
+        <h4>Recent Issues</h4>
+        <i data-lucide="calendar"></i>
+        <p id="recentIssues">0</p>
+        <span>Issued today</span>
+    </div>
+</div>
+
+<div class="panel">
+    <h3>Issue History</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Quantity Issued</th>
+                <th>Date & Time</th>
+            </tr>
+        </thead>
+        <tbody id="issueHistoryList"></tbody>
+    </table>
+</div>
+
+<script src="script.js"></script>
+ <script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+    // Just render the issue history from localStorage
+    function renderIssueHistory() {
+        const tbody = document.getElementById("issueHistoryList");
+        if (!tbody) return;
+
+        tbody.innerHTML = "";
+        const issueHistory = JSON.parse(localStorage.getItem("issueHistory")) || [];
+        issueHistory.forEach(entry => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${entry.itemName}</td>
+                <td>${entry.quantity}</td>
+                <td>${entry.dateTime}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // Initialize on page load
+    renderIssueHistory();
+</script>
+
+</body>
+</html>

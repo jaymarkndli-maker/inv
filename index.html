@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="bg-animation">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<header class="topbar">
+    <h2>Inventory Dashboard</h2>
+    <div class="header-buttons">
+        <button onclick="logout()" class="logout-btn">Logout</button>
+        <button onclick="goToIssuePage()" class="issue-btn"><i data-lucide="history"></i> </button>
+    </div>
+</header>
+
+<div class="dashboard">
+
+    <!-- Stats Cards -->
+    <div class="stats">
+
+    <div class="card blue">
+        <div>
+            <p>Total Products</p>
+            <h2 id="statProducts">0</h2>
+            <small>Items in inventory</small>
+        </div>
+        <i data-lucide="boxes"></i>
+    </div>
+
+    <div class="card green">
+        <div>
+            <p>Total Value</p>
+            <h2 id="statValue">₱0</h2>
+            <small>Inventory worth</small>
+        </div>
+        <i data-lucide="credit-card"></i>
+    </div>
+
+    <div class="card orange">
+        <div>
+            <p>Low Stock</p>
+            <h2 id="statLowStock">0</h2>
+            <small>Items need restock</small>
+        </div>
+        <i data-lucide="alert-triangle"></i>
+    </div>
+
+    <div class="card red">
+        <div>
+            <p>Out of Stock</p>
+            <h2 id="statOutStock">0</h2>
+            <small>Items unavailable</small>
+        </div>
+        <i data-lucide="trending-down"></i>
+    </div>
+
+    </div>
+
+    <!-- Main Panel -->
+    <div class="panel">
+
+        <div class="form-group">
+            <input type="text" id="itemName" placeholder="Item Name">
+            <input type="number" id="itemQuantity" placeholder="Quantity">
+
+            <select id="itemUnit">
+                <option value="Pc">Pc</option>
+                <option value="Box">Box</option>
+                <option value="Pad">Pad</option>
+                <option value="Ream">Ream</option>
+                <option value="Roll">Roll</option>
+                <option value="Liter">Liter</option>
+                <option value="Meter">Meter</option>
+                <option value="Kg">Kg</option>
+                <option value="Pack">Pack</option>
+            </select>
+
+            <button class="add-btn" onclick="addItem()"><i data-lucide="layers-plus"></i></button>
+        </div>
+
+        <input class="search-box" type="text" id="search"
+               placeholder="Search item..." onkeyup="renderItems()">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Controls</th>
+                </tr>
+            </thead>
+            <tbody id="inventoryList"></tbody>
+        </table>
+
+    </div>
+ 
+</div>
+
+<!-- Modal -->
+<div id="customModal" class="custom-modal">
+    <div class="modal-box">
+
+        <!-- Header -->
+        <div class="modal-header">
+            <h2>Add New Product</h2>
+            <span class="close-btn" onclick="closeModal()">✕</span>
+        </div>
+
+        <p class="modal-subtext">
+            Fill in the details to add a new product to your inventory
+        </p>
+
+        <!-- Form Grid -->
+        <div class="modal-grid">
+
+            <div class="form-group">
+                <label>Product Name</label>
+                <input type="text" placeholder="Enter product name">
+            </div>
+
+            <div class="form-group">
+                <label>SKU</label>
+                <input type="text" placeholder="e.g., PRD-001">
+            </div>
+
+            <div class="form-group">
+                <label>Category</label>
+                <input type="text" placeholder="e.g., Electronics, Furniture">
+            </div>
+
+            <div class="form-group">
+                <label>Unit of Measure</label>
+                <select>
+                    <option>Pieces (pcs)</option>
+                    <option>Box</option>
+                    <option>Kg</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Quantity</label>
+                <input type="number" value="0">
+            </div>
+
+            <div class="form-group">
+                <label>Min Stock</label>
+                <input type="number" value="0">
+                <small>Alert threshold</small>
+            </div>
+
+            <div class="form-group">
+                <label>Price ($)</label>
+                <input type="number" value="0">
+            </div>
+
+        </div>
+
+        <!-- Description -->
+        <div class="form-group full">
+            <label>Description</label>
+            <textarea placeholder="Enter product description"></textarea>
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-footer">
+            <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+            <button class="add-btn">Add Product</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- VERY IMPORTANT: Load JavaScript -->
+ <script src="https://unpkg.com/lucide@latest"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
