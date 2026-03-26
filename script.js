@@ -1,8 +1,8 @@
 // ===============================
 // ===== CHECK LOGIN =====
-if (window.location.pathname.includes("index.html") || window.location.pathname.includes("issue.html")) {
+if (window.location.pathname.includes("dashboard.html") || window.location.pathname.includes("issue.html")) {
     if (localStorage.getItem("isLoggedIn") !== "true") {
-        window.location.href = "index.html";
+        window.location.href = "dashboard.html";
     }
 }
 
