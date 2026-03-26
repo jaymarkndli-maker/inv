@@ -2,13 +2,13 @@
 // ===== CHECK LOGIN =====
 if (window.location.pathname.includes("index.html") || window.location.pathname.includes("issue.html")) {
     if (localStorage.getItem("isLoggedIn") !== "true") {
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }
 }
 
 function logout() {
     localStorage.removeItem("isLoggedIn");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 // ===============================
@@ -310,10 +310,10 @@ function login(event) {
 
     if (user === "jay" && pass === "123") {
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "index.html";
+        window.location.href = "dashboard.html";
     } else if (user === "markee" && pass === "123") {
         localStorage.setItem("isLoggedIn", "true");
-        window.location.href = "index.html";
+        window.location.href = "dashboard.html";
     }
      else {
         document.getElementById("loginError").textContent = "Invalid username or password";
